@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+    <context:component-scan base-package="org.personal.sample"/>
+
+    <!--<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value = "org.apache.derby.jdbc.ClientDriver" />
+        <property name="url" value="jdbc:derby://localhost:1527/db" />
+    </bean>
+-->
+    <bean id="triangle" class="org.personal.sample.Triangle" autowire="constructor"/>
+    <!--<bean id="circle" class="org.personal.sample.Circle" autowire="constructor" />-->
+
+    <bean id="A" class="org.personal.sample.Point">
+        <property name="X" value="0"/>
+        <property name="Y" value="0"/>
+    </bean>
+
+    <bean id="B" class="org.personal.sample.Point">
+        <property name="X" value="13"/>
+        <property name="Y" value="4"/>
+    </bean>
+
+    <bean id="C" class="org.personal.sample.Point">
+        <property name="X" value="9"/>
+        <property name="Y" value="12"/>
+    </bean>
+
+    <bean id="centre" class="org.personal.sample.Point">
+        <property name="X" value="22"/>
+        <property name="Y" value="22"/>
+    </bean>
+
+
+    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>
+                    message
+                </value>
+            </list>
+        </property>
+    </bean>
+
+    <!--<bean class="org.personal.sample.MyBeanPostProcessor" />
+    <bean class="org.personal.sample.MyBeanFactoryPostProcessor" />-->
+
+    <aop:aspectj-autoproxy/>
+
+    <bean id="square" class="org.personal.aop.Square">
+        <property name="name" value="JD Square" />
+    </bean>
+
+    <bean id="rectangle" class="org.personal.aop.Rectangle">
+        <property name="name" value="JD Rectangle" />
+    </bean>
+
+    <bean id="shapeService" class="org.personal.aop.ShapeService" autowire="byName" />
+
+    <bean id="loggingAspect" class="org.personal.aop.LoggingAspect" />
+</beans>
